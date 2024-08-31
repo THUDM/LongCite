@@ -61,13 +61,13 @@ We are also open-sourcing CoF (Coarse to Fine) under `CoF/`, our automated data 
 <a name="training"></a>
 ## 🖥️ Model Training
 
-You can download and save the **LongCite-45k** data through the Hugging Face datasets ([🤗 HF Repo](https://huggingface.co/datasets/THUDM/LongCite-45k)):
+You can download and save the **LongCite-45k** dataset through the Hugging Face datasets ([🤗 HF Repo](https://huggingface.co/datasets/THUDM/LongCite-45k)):
 ```python
 dataset = load_dataset('THUDM/LongCite-45k')
 for split, split_dataset in dataset.items():
     split_dataset.to_json("train/LongCite-45k.jsonl")
 ```
-You can mix it with your own general SFT data. We adopt the code and environment in [LongAlign](https://github.com/THUDM/LongAlign) for model training (we use `transformers==4.43.0` for training on Llama-3.1), with slight modification to adapt to new models. The training code is under `train/`. Please make sure to install FlashAttention 2 according to the code base of [FlashAttention](https://github.com/Dao-AILab/flash-attention).
+You can mix it with general SFT data such as [ShareGPT](https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset). We adopt [Metragon-LM](https://github.com/NVIDIA/Megatron-LM) for model training. For more lightweight training, you can adopt the code and environment from [LongAlign](https://github.com/THUDM/LongAlign), which can support a max training sequence length of 32k tokens for GLM-4-9B and Llama-3.1-8B. 
 
 <a name="evaluation"></a>
 ## 📊 Evaluation
