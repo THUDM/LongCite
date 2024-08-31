@@ -15,6 +15,7 @@ https://github.com/user-attachments/assets/68f6677a-3ffd-41a8-889c-d56a65f9e3bb
 ## 🔍 Table of Contents
 - [⚙️ LongCite Deployment](#deployment)
 - [🤖️ CoF pipeline](#pipeline)
+- [🖥️ Model Training](#training)
 - [📊 Evaluation](#evaluation)
 - [📝 Citation](#citation)
 
@@ -49,22 +50,22 @@ CUDA_VISIBLE_DEVICES=0 streamlit run demo.py --server.fileWatcherType none
 ```
 Alternatively, you can deploy the model with [vllm](https://github.com/vllm-project/vllm), which allows faster generation and multiconcurrent server. See the code example in [vllm_inference.py](https://github.com/THUDM/LongCite/blob/main/vllm_inference.py).
 
-<a name="agentwrite"></a>
-## 🤖️ AgentWrite
+<a name="pipeline"></a>
+## 🤖️ CoF Pipeline
+![cof](https://github.com/user-attachments/assets/dae25838-3ce0-4a2c-80f7-307c8128e5c4)
 
-![agentwrite](https://github.com/user-attachments/assets/5d80314b-eab6-4945-848d-0db8e23ffc90)
+We are also open-sourcing CoF (Coarse to Fine) under `CoF/`, our automated data construction pipeline for long-context QA with citations. Please configure your API key in the [utils/llm_api.py](https://github.com/THUDM/LongCite/blob/main/utils/llm_api.py), then run the following four scripts to obtain the final data: 
+`1_qa_generation.py`, `2_chunk_level_citation.py`, `3_sentence_level_citaion.py`, and `4_postprocess_and_filter.py`.
 
-We are also open-sourcing AgentWrite under `agentwrite/`, our automated ultra-long output data construction pipeline. Run `plan.py` and then `write.py` to obtain the final data. Please configure your API key in the files.
 
-
-<a name="LongCite-training"></a>
+<a name="training"></a>
 ## 🖥️ Model Training
 
-You can download and save the **LongCite-6k** data through the Hugging Face datasets ([🤗 HF Repo](https://huggingface.co/datasets/THUDM/LongCite-6k)):
+You can download and save the **LongCite-45k** data through the Hugging Face datasets ([🤗 HF Repo](https://huggingface.co/datasets/THUDM/LongCite-45k)):
 ```python
-dataset = load_dataset('THUDM/LongCite-6k')
+dataset = load_dataset('THUDM/LongCite-45k')
 for split, split_dataset in dataset.items():
-    split_dataset.to_json("train/LongCite-6k.jsonl")
+    split_dataset.to_json("train/LongCite-45k.jsonl")
 ```
 You can mix it with your own general SFT data. We adopt the code and environment in [LongAlign](https://github.com/THUDM/LongAlign) for model training (we use `transformers==4.43.0` for training on Llama-3.1), with slight modification to adapt to new models. The training code is under `train/`. Please make sure to install FlashAttention 2 according to the code base of [FlashAttention](https://github.com/Dao-AILab/flash-attention).
 
