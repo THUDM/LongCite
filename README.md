@@ -54,7 +54,7 @@ Alternatively, you can deploy the model with [vllm](https://github.com/vllm-proj
 ## 🤖️ CoF Pipeline
 ![cof](https://github.com/user-attachments/assets/dae25838-3ce0-4a2c-80f7-307c8128e5c4)
 
-We are also open-sourcing CoF (Coarse to Fine) under `CoF/`, our automated data construction pipeline for long-context QA with citations. Please configure your API key in the `utils/llm_api.py`, then run the following four scripts to obtain the final data: 
+We are also open-sourcing CoF (Coarse to Fine) under `CoF/`, our automated SFT data construction pipeline for geerating high-quality long-context QA instances with fine-grained citations. Please configure your API key in the `utils/llm_api.py`, then run the following four scripts to obtain the final data: 
 `1_qa_generation.py`, `2_chunk_level_citation.py`, `3_sentence_level_citaion.py`, and `4_postprocess_and_filter.py`.
 
 
@@ -71,7 +71,7 @@ You can mix it with general SFT data such as [ShareGPT](https://huggingface.co/d
 
 <a name="evaluation"></a>
 ## 📊 Evaluation
-We introduce an automatic benchmark: **LongBench-Cite**, which is adopted from [LongBench](https://github.com/THUDM/LongBench) and [LongBench-Chat](https://github.com/THUDM/LongAlign), to measure the citation quality as well as response correctness in long-context QA scenarios. 
+We introduce an automatic benchmark: **LongBench-Cite**, which adopt long-context QA pairs from [LongBench](https://github.com/THUDM/LongBench) and [LongBench-Chat](https://github.com/THUDM/LongAlign), to measure the citation quality as well as response correctness in long-context QA scenarios. 
 
 We provide our evaluation data and code under `LongBench-Cite/`. Run `pred_sft.py` and `pred_one_shot.py` to get responses from fine-tuned models (e.g., LongCite-glm4-9b) and normal models (e.g., GPT-4o). Then run `eval_cite.py` and `eval_correct.py` to evaluate the citation quality and response correctness. Remember to configure your OpenAI API key in `utils/llm_api.py` since we adopt GPT-4o as the judge.
 
