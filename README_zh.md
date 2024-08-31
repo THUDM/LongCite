@@ -2,7 +2,7 @@
 <img src="https://github.com/user-attachments/assets/d931d4a7-fb5d-4b9c-af54-12bdc875f8e1" width="80%" alt="LongCite">
 </p>
 
-# LongCite: 支持长上下文问答中大模型生成细化引用
+# LongCite: 让LLM在长上下文问答中生成细粒度引用
 
 <p align="center">
     🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-glm4-9b" target="_blank">HF 库</a> • 📃 <a href="https://arxiv.org/abs/" target="_blank">论文</a>
@@ -10,7 +10,8 @@
 
 [English](./README.md) | [中文](./README_zh.md)
 
-https://github.com/user-attachments/assets/68f6677a-3ffd-41a8-889c-d56a65f9e3bb
+https://github.com/user-attachments/assets/474b3190-d0a2-4947-920a-445dd9aff217
+
 
 ## 🔍 目录
 - [⚙️ LongCite 部署](#部署)
@@ -25,7 +26,7 @@ https://github.com/user-attachments/assets/68f6677a-3ffd-41a8-889c-d56a65f9e3bb
 **环境设置**:
 我们建议使用 `transformers>=4.43.0` 来成功部署我们的模型。
 
-我们开源了两个模型: [LongCite-glm4-9b](https://huggingface.co/THUDM/LongCite-glm4-9b) 和 [LongCite-llama3.1-8b](https://huggingface.co/THUDM/LongCite-llama3.1-8b)。这两个模型分别基于 [GLM-4-9B](https://huggingface.co/THUDM/glm-4-9b) 和 [Meta-Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B) 训练，它们对应论文中的 "LongCite-9B" 和 "LongCite-8B" 模型。给定一个长上下文的查询，这些模型可以生成准确的回答和精确的句子级别引用，便于用户验证输出信息。试试模型:
+我们开源了两个模型: [LongCite-glm4-9b](https://huggingface.co/THUDM/LongCite-glm4-9b) 和 [LongCite-llama3.1-8b](https://huggingface.co/THUDM/LongCite-llama3.1-8b)。这两个模型分别基于 [GLM-4-9B](https://huggingface.co/THUDM/glm-4-9b) 和 [Meta-Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B) 训练，它们对应论文中的 "LongCite-9B" 和 "LongCite-8B" 模型。给定一个长上下文的问题，这些模型可以生成准确的回答和精确的句子级别引用，便于用户验证模型输出的信息。试用该模型:
 ```python
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -48,13 +49,13 @@ print("Context (divided into sentences):\n{}\n".format(result['splited_context']
 ```
 CUDA_VISIBLE_DEVICES=0 streamlit run demo.py --server.fileWatcherType none
 ```
-你也可以通过 [vllm](https://github.com/vllm-project/vllm) 部署模型，这使得生成更快并支持多并发服务器。在 [vllm_inference.py](https://github.com/THUDM/LongCite/blob/main/vllm_inference.py) 中查看代码示例。
+你也可以通过 [vllm](https://github.com/vllm-project/vllm) 部署模型，这可以使生成更快并支持多并发服务。代码示例在 [vllm_inference.py](https://github.com/THUDM/LongCite/blob/main/vllm_inference.py) 中。
 
 <a name="流水线"></a>
 ## 🤖️ 数据构造
 ![cof](https://github.com/user-attachments/assets/dae25838-3ce0-4a2c-80f7-307c8128e5c4)
 
-我们将 CoF（Corse to Fine）开源在 `CoF/` 目录下，这是我们的长上下文QA带引用的自动化数据构建流水线。请在 `utils/llm_api.py` 中配置你的API密钥，然后运行以下四个脚本以获得最终数据：`1_qa_generation.py`，`2_chunk_level_citation.py`，`3_sentence_level_citation.py`，和 `4_postprocess_and_filter.py`。
+我们将 CoF（Corse to Fine）开源在 `CoF/` 目录下，这是我们的自动化SFT数据构建流程，用来生成高质量的的带有细粒度引用的长上下文问答数据。请在 `utils/llm_api.py` 中配置你的API密钥，然后运行以下四个脚本以获得最终数据：`1_qa_generation.py`，`2_chunk_level_citation.py`，`3_sentence_level_citation.py`，和 `4_postprocess_and_filter.py`。
 
 <a name="训练"></a>
 
@@ -66,13 +67,13 @@ dataset = load_dataset('THUDM/LongCite-45k')
 for split, split_dataset in dataset.items():
     split_dataset.to_json("train/LongCite-45k.jsonl")
 ```
-你可以将其与一般的 SFT 数据如 [ShareGPT](https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset) 混合使用。我们采用 [Metragon-LM](https://github.com/NVIDIA/Megatron-LM) 进行模型训练。如果想采用更轻量级的实现，你可以采用 [LongAlign](https://github.com/THUDM/LongAlign) 的代码和环境，它可以支持 32k 令牌的最大训练序列长度（适用于 GLM-4-9B 和 Llama-3.1-8B）。
+你可以将其与一般的 SFT 数据如 [ShareGPT](https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset) 混合使用。我们采用 [Metragon-LM](https://github.com/NVIDIA/Megatron-LM) 进行模型训练。如果想采用更轻量级的实现，你可以采用 [LongAlign](https://github.com/THUDM/LongAlign) 的代码和环境，对于训练GLM-4-9B 和 Llama-3.1-8B，它可以支持 32k token的最大训练序列长度。
 
 <a name="评估"></a>
 ## 📊 评估
-我们引入了一个自动评估基准：**LongBench-Cite**，它从 [LongBench](https://github.com/THUDM/LongBench) 和 [LongBench-Chat](https://github.com/THUDM/LongAlign) 中采用，用于衡量长上下文 QA 场景中的引用质量以及响应的正确性。 
+我们引入了一个自动评估基准：**LongBench-Cite**，它采用了 [LongBench](https://github.com/THUDM/LongBench) 和 [LongBench-Chat](https://github.com/THUDM/LongAlign) 中的问答数据，用于衡量长上下文 QA 场景中的引用质量以及响应的正确性。 
 
-我们在 `LongBench-Cite/` 目录下提供了评估数据和代码。运行 `pred_sft.py` 和 `pred_one_shot.py` 以从微调模型（如 LongCite-glm4-9b）和普通模型（如 GPT-4o）获取响应。然后运行 `eval_cite.py` 和 `eval_correct.py` 以评估引用质量和响应的正确性。请在 `utils/llm_api.py` 中配置你的 OpenAI API 密钥，因为我们采用 GPT-4o 作为评判。 
+我们在 `LongBench-Cite/` 目录下提供了评估数据和代码。运行 `pred_sft.py` 和 `pred_one_shot.py` 以从微调模型（如 LongCite-glm4-9b）和普通模型（如 GPT-4o）获取响应。然后运行 `eval_cite.py` 和 `eval_correct.py` 以评估引用质量和响应的正确性。请在 `utils/llm_api.py` 中配置你的 OpenAI API 密钥，因为我们采用 GPT-4o 作为评审。 
 
 以下是 **LongBench-Cite** 的评估结果：
 ![eval_results](https://github.com/user-attachments/assets/1ef68c5f-63f0-4041-8f19-b8694b0d68c2)
