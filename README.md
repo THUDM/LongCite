@@ -54,7 +54,7 @@ Alternatively, you can deploy the model with [vllm](https://github.com/vllm-proj
 ## 🤖️ CoF Pipeline
 ![cof](https://github.com/user-attachments/assets/dae25838-3ce0-4a2c-80f7-307c8128e5c4)
 
-We are also open-sourcing CoF (Coarse to Fine) under `CoF/`, our automated data construction pipeline for long-context QA with citations. Please configure your API key in the [utils/llm_api.py](https://github.com/THUDM/LongCite/blob/main/utils/llm_api.py), then run the following four scripts to obtain the final data: 
+We are also open-sourcing CoF (Coarse to Fine) under `CoF/`, our automated data construction pipeline for long-context QA with citations. Please configure your API key in the `utils/llm_api.py`, then run the following four scripts to obtain the final data: 
 `1_qa_generation.py`, `2_chunk_level_citation.py`, `3_sentence_level_citaion.py`, and `4_postprocess_and_filter.py`.
 
 
@@ -72,7 +72,7 @@ You can mix it with general SFT data such as [ShareGPT](https://huggingface.co/d
 <a name="evaluation"></a>
 ## 📊 Evaluation
 We introduce an automatic benchmark: **LongBench-Cite**, to measuring both the response correctness and citation quality in long-context QA scenarios. 
-We provide our evaluation data and code under `LongBench-Cite/`. Run `pred_sft.py` and `pred_one_shot.py` to get responses from fine-tuned models (e.g., LongCite-glm4-9b) and normal models (e.g., GPT-4o). Then run `eval_correct.py` and `eval_cite.py` to evaluate the response correctness ($S_q$) and citation quality ($S_l$). Remember to configure your OpenAI API key in [utils/llm_api.py](https://github.com/THUDM/LongCite/blob/main/utils/llm_api.py) since we adopt GPT-4o as the judge.
+We provide our evaluation data and code under `LongBench-Cite/`. Run `pred_sft.py` and `pred_one_shot.py` to get responses from fine-tuned models (e.g., LongCite-glm4-9b) and normal models (e.g., GPT-4o). Then run `eval_correct.py` and `eval_cite.py` to evaluate the response correctness ($S_q$) and citation quality ($S_l$). Remember to configure your OpenAI API key in `utils/llm_api.py` since we adopt GPT-4o as the judge.
 
 Here are the evaluation results on **LongBench-Write**:
 <img width="1000" alt="longbench-write" src="https://github.com/user-attachments/assets/8dbb6c02-09c4-4319-bd38-f1135457cd25">
