@@ -1,52 +1,53 @@
 <p align="center" width="100%">
-<img src="https://github.com/user-attachments/assets/d931d4a7-fb5d-4b9c-af54-12bdc875f8e1" width="80%" alt="longwriter">
+<img src="https://github.com/user-attachments/assets/d931d4a7-fb5d-4b9c-af54-12bdc875f8e1" width="80%" alt="LongCite">
 </p>
 
-# LongWriter: Unleashing 10,000+ Word Generation From Long Context LLMs
+# LongCite: Enabling LLMs to Generate Fine-grained Citations in Long-context QA
 
 <p align="center">
-    🤗 <a href="https://huggingface.co/datasets/THUDM/LongWriter-6k" target="_blank">HF Repo</a> • 📃 <a href="https://arxiv.org/abs/2408.07055" target="_blank">Paper</a> • 🚀 <a href="https://huggingface.co/spaces/THUDM/LongWriter" target="_blank">HF Space</a>
+    🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-45k" target="_blank">HF Repo</a> • 📃 <a href="https://arxiv.org/abs/" target="_blank">Paper</a>
 </p>
 
-[English](./README.md) | [中文](./README_zh.md) | [日本語](./README_jp.md)
+[English](./README.md) | [中文](./README_zh.md)
 
-https://github.com/user-attachments/assets/c7eedeca-98ed-43ec-8619-25137987bcde
-
-Left: LongWriter-glm4-9b; Right: GLM-4-9B-chat
-
-## 🔥 Updates
-**[2024/08/18]** You can now deploy the LongWriter model using [vllm](https://github.com/vllm-project/vllm). Refer to the code in [vllm_inference.py](https://github.com/THUDM/LongWriter/blob/main/vllm_inference.py) and experience lightning-fast generation. It can **generate over 10,000+ words in just one minute**!
+https://github.com/user-attachments/assets/68f6677a-3ffd-41a8-889c-d56a65f9e3bb
 
 ## 🔍 Table of Contents
-- [⚙️ LongWriter Deployment](#deployment)
-- [🤖️ AgentWrite](#agentwrite)
-- [🖥️ Model Training](#longwriter-training)
+- [⚙️ LongCite Deployment](#deployment)
+- [🤖️ CoF pipeline](#pipeline)
 - [📊 Evaluation](#evaluation)
-- [👀 Cases](#case)
 - [📝 Citation](#citation)
 
 <a name="deployment"></a>
-## ⚙️ LongWriter Deployment
+## ⚙️ LongCite Deployment
 
 **Environmental Setup**:
 We recommend using `transformers>=4.43.0` to successfully deploy our models.
 
-We open-source two models: [LongWriter-glm4-9b](https://huggingface.co/THUDM/LongWriter-glm4-9b) and [LongWriter-llama3.1-8b](https://huggingface.co/THUDM/LongWriter-llama3.1-8b), trained based on [GLM-4-9B](https://huggingface.co/THUDM/glm-4-9b) and [Meta-Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B), respectively. These two models point to the "LongWriter-9B-DPO" and "LongWriter-8B" models in our paper. Try the model:
+We open-source two models: [LongCite-glm4-9b](https://huggingface.co/THUDM/LongCite-glm4-9b) and [LongCite-llama3.1-8b](https://huggingface.co/THUDM/LongCite-llama3.1-8b), trained based on [GLM-4-9B](https://huggingface.co/THUDM/glm-4-9b) and [Meta-Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B), respectively. These two models point to the "LongCite-9B" and "LongCite-8B" models in our paper. Given a long-context-based query, these models can generate accurate response and precise sentence-level citations, making it easy for user to verify the output information. Try the model:
 ```python
-from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
-tokenizer = AutoTokenizer.from_pretrained("THUDM/LongWriter-glm4-9b", trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained("THUDM/LongWriter-glm4-9b", torch_dtype=torch.bfloat16, trust_remote_code=True, device_map="auto")
-model = model.eval()
-query = "Write a 10000-word China travel guide"
-response, history = model.chat(tokenizer, query, history=[], max_new_tokens=32768, temperature=0.5)
-print(response)
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+tokenizer = AutoTokenizer.from_pretrained('THUDM/LongCite-glm4-9b', trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained('THUDM/LongCite-glm4-9b', torch_dtype=torch.bfloat16, trust_remote_code=True, device_map='auto')
+
+context = '''
+W. Russell Todd, 94, United States Army general (b. 1928). February 13. Tim Aymar, 59, heavy metal singer (Pharaoh) (b. 1963). Marshall \"Eddie\" Conway, 76, Black Panther Party leader (b. 1946). Roger Bonk, 78, football player (North Dakota Fighting Sioux, Winnipeg Blue Bombers) (b. 1944). Conrad Dobler, 72, football player (St. Louis Cardinals, New Orleans Saints, Buffalo Bills) (b. 1950). Brian DuBois, 55, baseball player (Detroit Tigers) (b. 1967). Robert Geddes, 99, architect, dean of the Princeton University School of Architecture (1965–1982) (b. 1923). Tom Luddy, 79, film producer (Barfly, The Secret Garden), co-founder of the Telluride Film Festival (b. 1943). David Singmaster, 84, mathematician (b. 1938).
+'''
+query = "What was Robert Geddes' profession?"
+result = model.query_longcite(context, query, tokenizer=tokenizer, max_input_length=128000, max_new_tokens=1024)
+
+print("Answer:\n{}\n".format(result['answer']))
+print("Statement with citations:\n{}\n".format(
+  json.dumps(result['statements_with_citations'], indent=2, ensure_ascii=False)))
+print("Context (divided into sentences):\n{}\n".format(result['splited_context']))
 ```
-You may deploy your own LongWriter chatbot (like the one we show in the teasor video) by running
+You may deploy your own LongCite chatbot (like the one we show in the above video) by running
 ```
-CUDA_VISIBLE_DEVICES=0 python trans_web_demo.py
+CUDA_VISIBLE_DEVICES=0 streamlit run demo.py --server.fileWatcherType none
 ```
-Alternatively, you can deploy the model with [vllm](https://github.com/vllm-project/vllm), which allows generating 10,000+ words within a minute! See the code example in [vllm_inference.py](https://github.com/THUDM/LongWriter/blob/main/vllm_inference.py).
+Alternatively, you can deploy the model with [vllm](https://github.com/vllm-project/vllm), which allows faster generation and multiconcurrent server. See the code example in [vllm_inference.py](https://github.com/THUDM/LongCite/blob/main/vllm_inference.py).
 
 <a name="agentwrite"></a>
 ## 🤖️ AgentWrite
@@ -56,14 +57,14 @@ Alternatively, you can deploy the model with [vllm](https://github.com/vllm-proj
 We are also open-sourcing AgentWrite under `agentwrite/`, our automated ultra-long output data construction pipeline. Run `plan.py` and then `write.py` to obtain the final data. Please configure your API key in the files.
 
 
-<a name="longwriter-training"></a>
+<a name="LongCite-training"></a>
 ## 🖥️ Model Training
 
-You can download and save the **LongWriter-6k** data through the Hugging Face datasets ([🤗 HF Repo](https://huggingface.co/datasets/THUDM/LongWriter-6k)):
+You can download and save the **LongCite-6k** data through the Hugging Face datasets ([🤗 HF Repo](https://huggingface.co/datasets/THUDM/LongCite-6k)):
 ```python
-dataset = load_dataset('THUDM/LongWriter-6k')
+dataset = load_dataset('THUDM/LongCite-6k')
 for split, split_dataset in dataset.items():
-    split_dataset.to_json("train/LongWriter-6k.jsonl")
+    split_dataset.to_json("train/LongCite-6k.jsonl")
 ```
 You can mix it with your own general SFT data. We adopt the code and environment in [LongAlign](https://github.com/THUDM/LongAlign) for model training (we use `transformers==4.43.0` for training on Llama-3.1), with slight modification to adapt to new models. The training code is under `train/`. Please make sure to install FlashAttention 2 according to the code base of [FlashAttention](https://github.com/Dao-AILab/flash-attention).
 
@@ -84,7 +85,7 @@ Here are the evaluation results on **LongWrite-Ruler**:
 
 <a name="case"></a>
 ## 👀 Cases
-Here are LongWriter-glm4-9b's outputs to random test prompts.
+Here are LongCite-glm4-9b's outputs to random test prompts.
 
 *User: Write a tragic love story about a lord's daughter falling in love with a servant, 5000 words.*
 
@@ -94,8 +95,8 @@ Here are LongWriter-glm4-9b's outputs to random test prompts.
 If you find our work useful, please kindly cite:
 
 ```
-@article{bai2024longwriter,
-  title={LongWriter: Unleashing 10,000+ Word Generation from Long Context LLMs}, 
+@article{bai2024LongCite,
+  title={LongCite: Unleashing 10,000+ Word Generation from Long Context LLMs}, 
   author={Yushi Bai and Jiajie Zhang and Xin Lv and Linzhi Zheng and Siqi Zhu and Lei Hou and Yuxiao Dong and Jie Tang and Juanzi Li},
   journal={arXiv preprint arXiv:2408.07055},
   year={2024}
