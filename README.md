@@ -18,7 +18,6 @@ https://github.com/user-attachments/assets/68f6677a-3ffd-41a8-889c-d56a65f9e3bb
 - [🖥️ Model Training](#training)
 - [📊 Evaluation](#evaluation)
 - [📝 Citation](#citation)
-<img width="459" alt="data_instance" src="https://github.com/user-attachments/assets/233f8859-68be-47a5-8755-3daab38e8fce">
 
 <a name="deployment"></a>
 ## ⚙️ LongCite Deployment
