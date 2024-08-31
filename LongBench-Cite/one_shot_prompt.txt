@@ -1,0 +1,49 @@
+Please answer the user's question based on the given document. When a factual statement S in your response uses information from some chunks in the document (i.e., <C{s1}>-<C{e1}>, <C{s2}>-<C{e2}>, ...), please append these chunk numbers to S in the format "<statement>{S}<cite>[{s1}-{e1}][{s2}-{e2}]...</cite></statement>". For other sentences such as such as introductory sentences, summarization sentences, reasoning, and inference, you still need to append "<cite></cite>" to them to indicate they need no citations. You must answer in the same language as the user's question.
+
+Here is an example:
+
+[Document Start]
+<C0>In the last two decades, several hundred planets have been detected beyond our Solar-system. <C1>Most of these extra-solar planets orbit sun-like stars. <C2>A small number have been detected around stars that are in their late evolutionary state, such as Red Giant Branch (RGB) stars and pulsars. <C3>The phase directly after the RGB stage, the Horizontal Branch (HB), however, is still unexplored; therefore, there is no empirical evidence for whether close-in planets, i.e., those with semi-major axes less than 0.1 AU, survive the giant phase of their host stars.
+
+<C4>Besides its evolutionary stage, a star’s chemical composition appears to be a major indicator of its probability for hosting a planet. <C5>Previous studies, e.g.,, showed that main-sequence (MS) stars that host giant planets are metal-rich. <C6>This finding is supported by the large exoplanet search surveys around MS stars reporting a connection between planet frequency and metallicity, and a survey of 160 metal-poor main-sequence stars finding no evidence for Jovian planets.
+
+<C7>Until now, only very few planets have been detected around stars with metallicities as low as [Fe/H]= $-1$, i.e. 10% of the sun’s metallicity. <C8>The detection of PSR B1620 b, a Jovian planet orbiting a pulsar in the core of the metal-poor globular cluster M4 ([Fe/H]=$-1.2$), suggests, however, that planets may form around metal-poor stars, although the formation mechanism of this particular planet might be linked to the dense cluster environment.
+
+<C9>We used the Fibre-fed Extended Range Optical Spectrograph (FEROS), a high-resolution spectrograph ($R=48,000$) attached to the 2.2 meter Max-Planck Gesellschaft/European Southern Observatory (MPG/ESO) telescope1, to observe the star. <C10>This star is classified as a red HB (RHB) star (Fig. 1) and its metal content is [Fe/H]$_\mathrm{mean}=-2.09$, i.e. about 1% that of the Sun. <C11>So far, is not known as a binary system. <C12>Detailed stellar parameters can be found in Supporting Online Material, Section [text1].
+
+<C13>Previous radial velocity (RV) measurements of showed a systematic velocity of about 300 $\mathrm{km\,s}^{-1}$ with respect to the Sun, indicating that the star belongs to the stellar halo. <C14>Indeed, the star has been connected to the Helmi stream, a group of stars that share similar orbital parameters that stand apart from those of the bulk of other stars in the solar neighborhood. <C15>The Helmi stream stars move on prograde eccentric orbits ($R_\mathrm{peri}\sim7$ kpc, $R_\mathrm{apo}\sim16$ kpc) that reach distances up to $\vert z\vert_\mathrm{max}\sim13$ kpc above and below the galactic plane. <C16>From that, it has been concluded that these stars were once bound to a satellite galaxy of the Milky Way that was tidally disrupted 6–9 Ga ago.
+
+<C17>, with a mean metallicity estimate of [Fe/H]=-2.1, is far more metal-poor than any previously known exoplanet hosting star (Fig. 3). <C18>For the existing theories of hot giant planet formation, metallicity is an important parameter: in particular, it is fundamental for the core-accretion planet formation model. <C19>It might be that initially, in the planet formation phase, had a higher metallicity, and that during its subsequent evolution, it lost its heavier elements. <C20>For example, during the giant phase, heavy elements could have had been incorporated into dust grains and then separated from the star’s atmosphere. <C21>However, given the star’s membership to the Helmi stream, in which the most metal-rich sub-dwarfs known so far have [Fe/H]$\sim-1.5$, we do not expect its initial Fe abundance to exceed this value.
+[Document End]
+
+[Question]
+How does the metallicity of PSR B1620 b, at around 1% of the Sun's, compare to other known exoplanet host stars?
+
+[Remind]
+Please answer the user's question based on the given document. When a factual statement S in your response uses information from some chunks in the document (i.e., <C{s1}>-<C_{e1}>, <C{s2}>-<C{e2}>, ...), please append these chunk numbers to S in the format "<statement>{S}<cite>[{s1}-{e1}][{s2}-{e2}]...</cite></statement>". For other sentences such as such as introductory sentences, summarization sentences, reasoning, and inference, you still need to append "<cite></cite>" to them to indicate they need no citations. You must answer in the same language as the user's question.
+
+[Answer with Citations]
+<statement>Based on the document, the metallicity of PSR B1620 b is very low compared to other known exoplanet host stars:<cite></cite></statement>
+
+<statement>- PSR B1620 b has a metallicity of [Fe/H]=-2.09, which is about 1% of the Sun's metallicity.<cite>[10-10]</cite></statement>
+
+<statement>- This makes it far more metal-poor than any previously known exoplanet hosting star, as stated: "with a mean metallicity estimate of [Fe/H]=-2.1, is far more metal-poor than any previously known exoplanet hosting star".<cite>[17-17]</cite></statement>
+
+<statement>- The document also states that previous surveys of 160 metal-poor main-sequence stars found no evidence for Jovian planets, and very few planets have been detected around stars with metallicities as low as [Fe/H]= -1.<cite>[6-7]</cite></statement>
+
+<statement>So in summary, PSR B1620 b's metallicity of just 1% of the Sun's is exceptionally low compared to other stars known to host exoplanets. This makes the discovery of its exoplanet very noteworthy in the context of planet formation theories that depend on metallicity.<cite></cite></statement>
+
+
+Now get ready to handle the following test case. 
+
+[Document Start]
+<<context>>
+[Document End]
+
+[Question]
+<<question>>
+
+[Remind]
+Please answer the user's question based on the given document. When a factual statement S in your response uses information from some chunks in the document (i.e., <C{s1}>-<C_{e1}>, <C{s2}>-<C{e2}>, ...), please append these chunk numbers to S in the format "<statement>{S}<cite>[{s1}-{e1}][{s2}-{e2}]...</cite></statement>". For other sentences such as such as introductory sentences, summarization sentences, reasoning, and inference, you still need to append "<cite></cite>" to them to indicate they need no citations. You must answer in the same language as the user's question.
+
+[Answer with Citations]
