@@ -5,7 +5,7 @@
 # LongCite: Enabling LLMs to Generate Fine-grained Citations in Long-context QA
 
 <p align="center">
-    🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-45k" target="_blank">HF Repo</a> • 📃 <a href="https://arxiv.org/abs/" target="_blank">Paper</a>
+    🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-glm4-9b" target="_blank">HF Repo</a> • 📃 <a href="https://arxiv.org/abs/" target="_blank">Paper</a>
 </p>
 
 [English](./README.md) | [中文](./README_zh.md)
