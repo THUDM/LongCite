@@ -71,24 +71,23 @@ You can mix it with general SFT data such as [ShareGPT](https://huggingface.co/d
 
 <a name="evaluation"></a>
 ## 📊 Evaluation
-We introduce an automatic benchmark: **LongBench-Cite**, to measuring both the response correctness and citation quality in long-context QA scenarios. 
-We provide our evaluation data and code under `LongBench-Cite/`. Run `pred_sft.py` and `pred_one_shot.py` to get responses from fine-tuned models (e.g., LongCite-glm4-9b) and normal models (e.g., GPT-4o). Then run `eval_correct.py` and `eval_cite.py` to evaluate the response correctness ($S_q$) and citation quality ($S_l$). Remember to configure your OpenAI API key in `utils/llm_api.py` since we adopt GPT-4o as the judge.
+We introduce an automatic benchmark: **LongBench-Cite**, which is adopted from [LongBench](https://github.com/THUDM/LongBench) and [LongBench-Chat](https://github.com/THUDM/LongAlign), to measure the citation quality as well as response correctness in long-context QA scenarios. 
 
-Here are the evaluation results on **LongBench-Write**:
-<img width="1000" alt="longbench-write" src="https://github.com/user-attachments/assets/8dbb6c02-09c4-4319-bd38-f1135457cd25">
-Here are the evaluation results on **LongWrite-Ruler**:
-![longwrite-ruler](https://github.com/user-attachments/assets/471f6e74-ab2c-4ad7-b73f-9ec8d2c2cde5)
+We provide our evaluation data and code under `LongBench-Cite/`. Run `pred_sft.py` and `pred_one_shot.py` to get responses from fine-tuned models (e.g., LongCite-glm4-9b) and normal models (e.g., GPT-4o). Then run `eval_cite.py` and `eval_correct.py` to evaluate the citation quality and response correctness. Remember to configure your OpenAI API key in `utils/llm_api.py` since we adopt GPT-4o as the judge.
+
+Here are the evaluation results on **LongBench-Cite**:
+![eval_results](https://github.com/user-attachments/assets/1ef68c5f-63f0-4041-8f19-b8694b0d68c2)
 
 <a name="citation"></a>
 ## 📝 Citation
 
-If you find our work useful, please kindly cite:
+If you find our work useful, please consider citing LongCite:
 
 ```
-@article{bai2024LongCite,
-  title={LongCite: Unleashing 10,000+ Word Generation from Long Context LLMs}, 
-  author={Yushi Bai and Jiajie Zhang and Xin Lv and Linzhi Zheng and Siqi Zhu and Lei Hou and Yuxiao Dong and Jie Tang and Juanzi Li},
-  journal={arXiv preprint arXiv:2408.07055},
+@article{zhang2024LongCite,
+  title = {LongCite: Enabling LLMs to Generate Fine-grained Citations in Long-context QA} 
+  author={Jiajie Zhang and Yushi Bai and Jiajie Zhang and Xin Lv and Wanjun Gu and Danqing Liu and Minhao Zou and Shulin Cao and Lei Hou and Yuxiao Dong and Ling Feng and Juanzi Li},
+  journal={arXiv preprint arXiv:},
   year={2024}
 }
 ```
