@@ -71,24 +71,13 @@ You can mix it with general SFT data such as [ShareGPT](https://huggingface.co/d
 
 <a name="evaluation"></a>
 ## 📊 Evaluation
-We introduce two evaluation benchmarks: **LongBench-Write** and **LongWrite-Ruler**. **LongBench-Write** focuses more on measuring the long output quality as well as the output length, while **LongWrite-Ruler** is designed as a light-weight stress test of the model's maximum output length.
-We provide our evaluation data and code under `evaluation/`. Run
-```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python pred.py
-```
-to get model responses. Then run `python eval_quality.py` and `python eval_length.py` to evaluate the quality ($S_q$) and length ($S_l$) scores. Remember to configure your OpenAI API key in `eval_quality.py` since we adopt GPT-4o as the judge.
+We introduce an automatic benchmark: **LongBench-Cite**, to measuring both the response correctness and citation quality in long-context QA scenarios. 
+We provide our evaluation data and code under `LongBench-Cite/`. Run `pred_sft.py` and `pred_one_shot.py` to get responses from fine-tuned models (e.g., LongCite-glm4-9b) and normal models (e.g., GPT-4o). Then run `eval_correct.py` and `eval_cite.py` to evaluate the response correctness ($S_q$) and citation quality ($S_l$). Remember to configure your OpenAI API key in [utils/llm_api.py](https://github.com/THUDM/LongCite/blob/main/utils/llm_api.py) since we adopt GPT-4o as the judge.
 
 Here are the evaluation results on **LongBench-Write**:
 <img width="1000" alt="longbench-write" src="https://github.com/user-attachments/assets/8dbb6c02-09c4-4319-bd38-f1135457cd25">
 Here are the evaluation results on **LongWrite-Ruler**:
 ![longwrite-ruler](https://github.com/user-attachments/assets/471f6e74-ab2c-4ad7-b73f-9ec8d2c2cde5)
-
-
-<a name="case"></a>
-## 👀 Cases
-Here are LongCite-glm4-9b's outputs to random test prompts.
-
-*User: Write a tragic love story about a lord's daughter falling in love with a servant, 5000 words.*
 
 <a name="citation"></a>
 ## 📝 Citation
