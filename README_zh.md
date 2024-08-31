@@ -15,7 +15,7 @@ https://github.com/user-attachments/assets/474b3190-d0a2-4947-920a-445dd9aff217
 
 ## 🔍 目录
 - [⚙️ LongCite 部署](#部署)
-- [🤖️ 数据构造](#流水线)
+- [🤖️ 数据构造流程 CoF](#流水线)
 - [🖥️ 模型训练](#训练)
 - [📊 评估](#评估)
 - [📝 引用](#引用)
@@ -52,7 +52,7 @@ CUDA_VISIBLE_DEVICES=0 streamlit run demo.py --server.fileWatcherType none
 你也可以通过 [vllm](https://github.com/vllm-project/vllm) 部署模型，这可以使生成更快并支持多并发服务。代码示例在 [vllm_inference.py](https://github.com/THUDM/LongCite/blob/main/vllm_inference.py) 中。
 
 <a name="流水线"></a>
-## 🤖️ 数据构造
+## 🤖️ 数据构造流程 CoF
 ![cof](https://github.com/user-attachments/assets/dae25838-3ce0-4a2c-80f7-307c8128e5c4)
 
 我们将 CoF（Corse to Fine）开源在 `CoF/` 目录下，这是我们的自动化SFT数据构建流程，用来生成高质量的的带有细粒度引用的长上下文问答数据。请在 `utils/llm_api.py` 中配置你的API密钥，然后运行以下四个脚本以获得最终数据：`1_qa_generation.py`，`2_chunk_level_citation.py`，`3_sentence_level_citation.py`，和 `4_postprocess_and_filter.py`。
