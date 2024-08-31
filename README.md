@@ -67,7 +67,7 @@ dataset = load_dataset('THUDM/LongCite-45k')
 for split, split_dataset in dataset.items():
     split_dataset.to_json("train/LongCite-45k.jsonl")
 ```
-You can mix it with general SFT data such as [ShareGPT](https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset). We adopt [Metragon-LM](https://github.com/NVIDIA/Megatron-LM) for model training. For more lightweight training, you can adopt the code and environment from [LongAlign](https://github.com/THUDM/LongAlign), which can support a max training sequence length of 32k tokens for GLM-4-9B and Llama-3.1-8B. 
+You can mix it with general SFT data such as [ShareGPT](https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset). We adopt [Metragon-LM](https://github.com/NVIDIA/Megatron-LM) for model training. For a more lightweight implementation, you may adopt the code and environment from [LongAlign](https://github.com/THUDM/LongAlign), which can support a max training sequence length of 32k tokens for GLM-4-9B and Llama-3.1-8B. 
 
 <a name="evaluation"></a>
 ## 📊 Evaluation
