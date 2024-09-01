@@ -26,7 +26,7 @@ https://github.com/user-attachments/assets/474b3190-d0a2-4947-920a-445dd9aff217
 **环境设置**:
 我们建议使用 `transformers>=4.43.0` 来成功部署我们的模型。
 
-我们开源了两个模型: [LongCite-glm4-9b](https://huggingface.co/THUDM/LongCite-glm4-9b) 和 [LongCite-llama3.1-8b](https://huggingface.co/THUDM/LongCite-llama3.1-8b)。这两个模型分别基于 [GLM-4-9B](https://huggingface.co/THUDM/glm-4-9b) 和 [Meta-Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B) 训练，它们对应论文中的 "LongCite-9B" 和 "LongCite-8B" 模型。给定一个长上下文的问题，这些模型可以生成准确的回答和精确的句子级别引用，便于用户验证模型输出的信息。试用该模型:
+我们开源了两个模型: [LongCite-glm4-9b](https://huggingface.co/THUDM/LongCite-glm4-9b) 和 [LongCite-llama3.1-8b](https://huggingface.co/THUDM/LongCite-llama3.1-8b) (支持最大 128K 上下文)。这两个模型分别基于 [GLM-4-9B](https://huggingface.co/THUDM/glm-4-9b) 和 [Meta-Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B) 训练，它们对应论文中的 "LongCite-9B" 和 "LongCite-8B" 模型。给定一个长上下文的问题，这些模型可以生成准确的回答和精确的句子级别引用，便于用户验证模型输出的信息。试用该模型:
 ```python
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
