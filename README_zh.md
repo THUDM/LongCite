@@ -86,7 +86,7 @@ for split, split_dataset in dataset.items():
 ```
 @article{zhang2024LongCite,
   title = {LongCite: Enabling LLMs to Generate Fine-grained Citations in Long-context QA} 
-  author={Jiajie Zhang and Yushi Bai and Jiajie Zhang and Xin Lv and Wanjun Gu and Danqing Liu and Minhao Zou and Shulin Cao and Lei Hou and Yuxiao Dong and Ling Feng and Juanzi Li},
+  author={Jiajie Zhang and Yushi Bai and Xin Lv and Wanjun Gu and Danqing Liu and Minhao Zou and Shulin Cao and Lei Hou and Yuxiao Dong and Ling Feng and Juanzi Li},
   journal={arXiv preprint arXiv:},
   year={2024}
 }
