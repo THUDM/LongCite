@@ -1,6 +1,6 @@
 
 <p align="center" width="100%">
-<img src="https://github.com/user-attachments/assets/089ccebe-2ebc-4c8e-a9e0-9d82f5e253f9" width="100%" alt="LongCite">
+<img src="https://github.com/user-attachments/assets/089ccebe-2ebc-4c8e-a9e0-9d82f5e253f9" width="80%" alt="LongCite">
 </p>
 
 # LongCite: Enabling LLMs to Generate Fine-grained Citations in Long-context QA
