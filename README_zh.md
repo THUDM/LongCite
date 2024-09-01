@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-<img src="https://github.com/user-attachments/assets/38dda736-326b-4789-8cc2-23bfedd49cc1" width="80%" alt="LongCite">
+<img src="https://github.com/user-attachments/assets/089ccebe-2ebc-4c8e-a9e0-9d82f5e253f9" width="80%" alt="LongCite">
 </p>
 
 # LongCite: 让LLM在长上下文问答中生成细粒度引用
