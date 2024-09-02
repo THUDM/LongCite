@@ -1,11 +1,11 @@
 <p align="center" width="100%">
-<img src="https://github.com/user-attachments/assets/089ccebe-2ebc-4c8e-a9e0-9d82f5e253f9" width="80%" alt="LongCite">
+<img src="https://github.com/user-attachments/assets/089ccebe-2ebc-4c8e-a9e0-9d82f5e253f9" width="80%" alt="LongCite"> 
 </p>
 
 # LongCite: 让LLM在长上下文问答中生成细粒度引用
 
 <p align="center">
-    🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-45k" target="_blank">HF 库</a> • 📃 <a href="https://arxiv.org/abs/" target="_blank">论文</a>
+    🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-45k" target="_blank">HF 库</a> • 📃 <a href="https://arxiv.org/abs/" target="_blank">论文</a>  • 🚀 <a href="https://huggingface.co/spaces/THUDM/LongCite" target="_blank">HF空间</a>
 </p>
 
 [English](./README.md) | [中文](./README_zh.md)
