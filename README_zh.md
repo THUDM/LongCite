@@ -84,7 +84,7 @@ for split, split_dataset in dataset.items():
 如果你觉得我们的工作有用，请考虑引用 LongCite：
 
 ```
-@article{zhang2024LongCite,
+@article{zhang2024longcite,
   title = {LongCite: Enabling LLMs to Generate Fine-grained Citations in Long-context QA} 
   author={Jiajie Zhang and Yushi Bai and Xin Lv and Wanjun Gu and Danqing Liu and Minhao Zou and Shulin Cao and Lei Hou and Yuxiao Dong and Ling Feng and Juanzi Li},
   journal={arXiv preprint arXiv:},
