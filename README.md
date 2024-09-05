@@ -6,7 +6,7 @@
 # LongCite: Enabling LLMs to Generate Fine-grained Citations in Long-context QA
 
 <p align="center">
-    🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-45k" target="_blank">HF Repo</a> • 📃 <a href="https://arxiv.org/abs/" target="_blank">Paper</a> • 🚀 <a href="https://huggingface.co/spaces/THUDM/LongCite" target="_blank">HF Space</a>
+    🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-45k" target="_blank">HF Repo</a> • 📃 <a href="https://arxiv.org/abs/2409.02897" target="_blank">Paper</a> • 🚀 <a href="https://huggingface.co/spaces/THUDM/LongCite" target="_blank">HF Space</a>
 </p>
 
 [English](./README.md) | [中文](./README_zh.md)
@@ -88,7 +88,7 @@ If you find our work useful, please consider citing LongCite:
 @article{zhang2024longcite,
   title = {LongCite: Enabling LLMs to Generate Fine-grained Citations in Long-context QA} 
   author={Jiajie Zhang and Yushi Bai and Xin Lv and Wanjun Gu and Danqing Liu and Minhao Zou and Shulin Cao and Lei Hou and Yuxiao Dong and Ling Feng and Juanzi Li},
-  journal={arXiv preprint arXiv:},
+  journal={arXiv preprint arXiv:2409.02897},
   year={2024}
 }
 ```
