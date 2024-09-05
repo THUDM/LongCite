@@ -65,7 +65,7 @@ CUDA_VISIBLE_DEVICES=0 streamlit run demo.py --server.fileWatcherType none
 ```python
 dataset = load_dataset('THUDM/LongCite-45k')
 for split, split_dataset in dataset.items():
-    split_dataset.to_json("train/LongCite-45k.jsonl")
+    split_dataset.to_json("train/long.jsonl")
 ```
 你可以将其与一般的 SFT 数据如 [ShareGPT](https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset) 混合使用。我们采用 [Metragon-LM](https://github.com/NVIDIA/Megatron-LM) 进行模型训练。如果想采用更轻量级的实现，你可以采用 [LongAlign](https://github.com/THUDM/LongAlign) 的代码和环境，对于训练GLM-4-9B 和 Llama-3.1-8B，它可以支持 32k token的最大训练序列长度。
 
