@@ -10,9 +10,11 @@ st.set_page_config(layout="wide")
 st.title("LongCite Demo")
 use_vllm = False # set True to use vllm for inference
 
+MODEL_PATH = os.environ.get("MODEL_PATH", "THUDM/LongCite-glm4-9b")
+
 @st.cache_resource
 def load_model():
-    model_path = "THUDM/LongCite-glm4-9b"
+    model_path = MODEL_PATH
     if use_vllm:
         from vllm_inference import LongCiteModel
         model = LongCiteModel(
