@@ -28,6 +28,7 @@ We recommend using `transformers>=4.43.0` to successfully deploy our models.
 
 We open-source two models: [LongCite-glm4-9b](https://huggingface.co/THUDM/LongCite-glm4-9b) and [LongCite-llama3.1-8b](https://huggingface.co/THUDM/LongCite-llama3.1-8b), which are trained based on [GLM-4-9B](https://huggingface.co/THUDM/glm-4-9b) and [Meta-Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B), respectively, and support up to 128K context. These two models point to the "LongCite-9B" and "LongCite-8B" models in our paper. Given a long-context-based query, these models can generate accurate response and precise sentence-level citations, making it easy for users to verify the output information. Try the model:
 ```python
+import json
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
