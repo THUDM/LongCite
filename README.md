@@ -26,7 +26,7 @@ https://github.com/user-attachments/assets/68f6677a-3ffd-41a8-889c-d56a65f9e3bb
 **Environmental Setup**:
 We recommend using `transformers>=4.43.0` to successfully deploy our models.
 
-We open-source two models: [LongCite-glm4-9b](https://huggingface.co/THUDM/LongCite-glm4-9b) and [LongCite-llama3.1-8b](https://huggingface.co/THUDM/LongCite-llama3.1-8b), which are trained based on [GLM-4-9B](https://huggingface.co/THUDM/glm-4-9b) and [Meta-Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B), respectively, and support up to 128K context. These two models point to the "LongCite-9B" and "LongCite-8B" models in our paper. Given a long-context-based query, these models can generate accurate response and precise sentence-level citations, making it easy for users to verify the output information. Try the model:
+We open-source two models: [LongCite-glm4-9b](https://huggingface.co/THUDM/LongCite-glm4-9b) and [LongCite-llama3.1-8b](https://huggingface.co/THUDM/LongCite-llama3.1-8b), which are trained based on [GLM-4-9B](https://huggingface.co/THUDM/glm-4-9b) and [Meta-Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B), respectively, and support up to 128K context. These two models point to the "LongCite-9B" and "LongCite-8B" models in our paper. Given a long-context-based query, these models can generate accurate responses and precise sentence-level citations, making it easy for users to verify the output information. Try the model:
 ```python
 import json
 import torch
@@ -56,7 +56,7 @@ Alternatively, you can deploy the model with [vllm](https://github.com/vllm-proj
 ## 🤖️ CoF Pipeline
 ![cof](https://github.com/user-attachments/assets/dae25838-3ce0-4a2c-80f7-307c8128e5c4)
 
-We are also open-sourcing CoF (Coarse to Fine) under `CoF/`, our automated SFT data construction pipeline for geerating high-quality long-context QA instances with fine-grained citations. Please configure your API key in the `utils/llm_api.py`, then run the following four scripts to obtain the final data: 
+We are also open-sourcing CoF (Coarse to Fine) under `CoF/`, our automated SFT data construction pipeline for generating high-quality long-context QA instances with fine-grained citations. Please configure your API key in the `utils/llm_api.py`, then run the following four scripts to obtain the final data: 
 `1_qa_generation.py`, `2_chunk_level_citation.py`, `3_sentence_level_citaion.py`, and `4_postprocess_and_filter.py`.
 
 
