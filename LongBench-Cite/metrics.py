@@ -79,9 +79,9 @@ def query_gpt4(prompt):
         tries += 1
         try:
             headers = {
-                'Authorization': "Bearer sk-coUxbkMbMVxkSfSQB3C38f3d159849D28f268bBa396eD24e"
+                'Authorization': "Bearer {Your Openai Key here}"
             }
-            resp = requests.post("https://one-api.glm.ai/v1/chat/completions", json = {
+            resp = requests.post("https://api.openai.com/v1/chat/completions", json = {
                 "model": GPT_MODEL,
                 "messages": msg,
                 "temperature": 0
