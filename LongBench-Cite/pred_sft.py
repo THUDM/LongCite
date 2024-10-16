@@ -28,7 +28,7 @@ for gpu_per_model in [1, 8]:
     print(f'Model: {model_path} | GPU per model: {gpu_per_model} | parallel num: {parallel_num}')
     print(f'Already predict: {len(opts)} | Remain to predict: {len(need_list)}')
     if len(need_list) == 0:
-        exit()
+        break
 
     def get_pred(rank, data):
         os.environ['CUDA_VISIBLE_DEVICES']=','.join(str(x) for x in gpus[rank*gpu_per_model:(rank+1)*gpu_per_model])
