@@ -65,6 +65,7 @@ We are also open-sourcing CoF (Coarse to Fine) under `CoF/`, our automated SFT d
 
 You can download and save the **LongCite-45k** dataset through the Hugging Face datasets ([🤗 HF Repo](https://huggingface.co/datasets/THUDM/LongCite-45k)):
 ```python
+from datasets import load_dataset
 dataset = load_dataset('THUDM/LongCite-45k')
 for split, split_dataset in dataset.items():
     split_dataset.to_json("train/long.jsonl")
