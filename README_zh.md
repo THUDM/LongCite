@@ -64,6 +64,7 @@ CUDA_VISIBLE_DEVICES=0 streamlit run demo.py --server.fileWatcherType none
 
 你可以通过 Hugging Face 数据集 ([🤗 HF Repo](https://huggingface.co/datasets/THUDM/LongCite-45k)) 下载和保存 **LongCite-45k** 数据集：
 ```python
+from datasets import load_dataset
 dataset = load_dataset('THUDM/LongCite-45k')
 for split, split_dataset in dataset.items():
     split_dataset.to_json("train/long.jsonl")
