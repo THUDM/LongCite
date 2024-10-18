@@ -1,0 +1,9 @@
+*__pycache__/
+samples*/
+runs/
+checkpoints/
+logs/
+*.DS_Store
+.idea
+output*
+test*
