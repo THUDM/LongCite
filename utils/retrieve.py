@@ -13,7 +13,7 @@ tokenizer = AutoTokenizer.from_pretrained("THUDM/LongCite-glm4-9b", trust_remote
 def text_split_by_punctuation(original_text, return_dict=False):
     # text = re.sub(r'([a-z])\.([A-Z])', r'\1. \2', original_text)  # separate period without space
     text = original_text
-    custom_sent_tokenizer = PunktSentenceTokenizer(text)
+    custom_sent_tokenizer = PunktSentenceTokenizer()
     punctuations = r"([。；！？])"  # For Chinese support
 
     separated = custom_sent_tokenizer.tokenize(text)
