@@ -1,4 +1,3 @@
-
 <p align="center" width="100%">
 <img src="https://github.com/user-attachments/assets/089ccebe-2ebc-4c8e-a9e0-9d82f5e253f9" width="80%" alt="LongCite">
 </p>
@@ -9,7 +8,7 @@
     🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-45k" target="_blank">HF Repo</a> • 📃 <a href="https://arxiv.org/abs/2409.02897" target="_blank">Paper</a> • 🚀 <a href="https://huggingface.co/spaces/THUDM-HF-SPACE/LongCite" target="_blank">HF Space</a>
 </p>
 
-[English](./README.md) | [中文](./README_zh.md)
+[English](./README.md) | [中文](./README_zh.md) | [日本語](./README_ja.md)
 
 https://github.com/user-attachments/assets/68f6677a-3ffd-41a8-889c-d56a65f9e3bb
 

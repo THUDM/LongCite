@@ -8,7 +8,7 @@
     🤗 <a href="https://huggingface.co/datasets/THUDM/LongCite-45k" target="_blank">HF 库</a> • 📃 <a href="https://arxiv.org/abs/2409.02897" target="_blank">论文</a>  • 🚀 <a href="https://huggingface.co/spaces/THUDM-HF-SPACE/LongCite" target="_blank">在线体验</a>
 </p>
 
-[English](./README.md) | [中文](./README_zh.md)
+[English](./README.md) | [中文](./README_zh.md) | [日本語](./README_ja.md)
 
 https://github.com/user-attachments/assets/474b3190-d0a2-4947-920a-445dd9aff217
 
